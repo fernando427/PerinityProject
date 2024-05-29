@@ -4,6 +4,7 @@ import com.fernando.PerinityProject.exceptions.ResourceNotFoundException;
 import com.fernando.PerinityProject.model.Pessoa;
 import com.fernando.PerinityProject.model.Tarefa;
 import com.fernando.PerinityProject.model.dto.PessoaHorasGastasDTO;
+import com.fernando.PerinityProject.model.dto.PessoaMediaHorasGastasDTO;
 import com.fernando.PerinityProject.repositories.PessoaRepository;
 import com.fernando.PerinityProject.repositories.TarefaRepository;
 import com.fernando.PerinityProject.service.PessoaService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,6 +54,24 @@ public class PessoaServiceImpl implements PessoaService {
                     .sum();
             return new PessoaHorasGastasDTO(pessoa.getNome(), pessoa.getDepartamento(), totalHorasGastas);
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PessoaMediaHorasGastasDTO> buscarPessoaNomePeriodo(String nome, LocalDate startDate, LocalDate endDate) {
+        List<Tarefa> tarefas = tarefaRepository.findByNomeAndPeriodo(nome, startDate, endDate);
+
+        double mediaHorasGastas = tarefas.stream()
+                .mapToInt(Tarefa::getDuracaoH)
+                .average()
+                .orElse(0);
+
+        return tarefas.stream()
+                .map(tarefa -> new PessoaMediaHorasGastasDTO(
+                        tarefa.getPessoa().getNome(),
+                        startDate + " to " + endDate,
+                        mediaHorasGastas))
+                .distinct()
+                .collect(Collectors.toList());
     }
 
 

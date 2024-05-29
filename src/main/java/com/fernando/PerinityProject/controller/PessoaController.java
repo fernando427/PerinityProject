@@ -2,12 +2,14 @@ package com.fernando.PerinityProject.controller;
 
 import com.fernando.PerinityProject.model.Pessoa;
 import com.fernando.PerinityProject.model.dto.PessoaHorasGastasDTO;
+import com.fernando.PerinityProject.model.dto.PessoaMediaHorasGastasDTO;
 import com.fernando.PerinityProject.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -40,5 +42,14 @@ public class PessoaController {
     @GetMapping
     public ResponseEntity<List<PessoaHorasGastasDTO>> listarPessoas() {
         return ResponseEntity.ok().body(pessoaService.listarPessoas());
+    }
+
+    @GetMapping("/gastos")
+    public ResponseEntity<List<PessoaMediaHorasGastasDTO>> buscarPessoaMediaHora(@RequestParam String nome,
+                                                                  @RequestParam String startDate,
+                                                                  @RequestParam String endDate) {
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+        return ResponseEntity.ok().body(pessoaService.buscarPessoaNomePeriodo(nome, start, end));
     }
 }

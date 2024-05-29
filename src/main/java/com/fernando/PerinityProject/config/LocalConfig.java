@@ -35,8 +35,8 @@ public class LocalConfig {
         if (tarefaRepository.count() == 0) {
             Tarefa tarefaA = new Tarefa(null, "Procurar requisitos", "Procurar todos os requisitos", LocalDate.of(2024, 10, 1), 5, "PENDENTE", "TI", null);
             Tarefa tarefaB = new Tarefa(null, "Atualizar banco de dados", "Realizar atualização de drivers", LocalDate.of(2024, 6, 5), 7, "PENDENTE", "Segurança", null);
-            Tarefa tarefaC = new Tarefa(null, "Desenvolvimento de requisitos", "Desenvolver todos os requisitos", LocalDate.of(2024, 6, 10), 15, "PENDENTE", "TI", null);
-            Tarefa tarefaD = new Tarefa(null, "Criação de testes", "Criar testes das funcionalidades", LocalDate.of(2024, 8, 1), 20, "PENDENTE", "Segurança", null);
+            Tarefa tarefaC = new Tarefa(null, "Desenvolvimento de requisitos", "Desenvolver todos os requisitos", LocalDate.of(2024, 6, 10), 10, "PENDENTE", "TI", null);
+            Tarefa tarefaD = new Tarefa(null, "Criação de testes", "Criar testes das funcionalidades", LocalDate.of(2024, 8, 1), 11, "PENDENTE", "Segurança", null);
 
             tarefaRepository.saveAll(List.of(tarefaA, tarefaB, tarefaC, tarefaD));
         }
