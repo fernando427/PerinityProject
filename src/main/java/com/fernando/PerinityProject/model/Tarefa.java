@@ -1,5 +1,6 @@
 package com.fernando.PerinityProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Tarefa {
     private String departamento;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 }

@@ -18,4 +18,11 @@ public class GlobalExceptionHandler {
                 new ErrorDetails(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
+
+    @ExceptionHandler(ResourceNotEqualException.class)
+    public ResponseEntity<ErrorDetails> handleResourceNotEqualException(ResourceNotEqualException ex, HttpServletRequest request) {
+        ErrorDetails error =
+                new ErrorDetails(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 }

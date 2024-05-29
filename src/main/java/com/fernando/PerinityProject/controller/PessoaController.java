@@ -37,7 +37,7 @@ public class PessoaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>> findAll() {
+    public ResponseEntity<List<Pessoa>> listarPessoas() {
         return ResponseEntity.ok().body(pessoaService.findAll());
     }
 }
