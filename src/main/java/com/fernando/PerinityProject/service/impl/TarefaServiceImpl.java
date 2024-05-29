@@ -8,8 +8,12 @@ import com.fernando.PerinityProject.repositories.PessoaRepository;
 import com.fernando.PerinityProject.repositories.TarefaRepository;
 import com.fernando.PerinityProject.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -58,5 +62,10 @@ public class TarefaServiceImpl implements TarefaService {
         return tarefaRepository.save(tarefa);
     }
 
+    @Override
+    public List<Tarefa> listarTarefasPendentes() {
+        Pageable pageable = PageRequest.of(0, 3);
+        return tarefaRepository.findTarefasPendentes(pageable);
+    }
 
 }

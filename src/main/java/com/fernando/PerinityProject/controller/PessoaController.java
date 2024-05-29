@@ -1,6 +1,7 @@
 package com.fernando.PerinityProject.controller;
 
 import com.fernando.PerinityProject.model.Pessoa;
+import com.fernando.PerinityProject.model.dto.PessoaHorasGastasDTO;
 import com.fernando.PerinityProject.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class PessoaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Pessoa>> listarPessoas() {
-        return ResponseEntity.ok().body(pessoaService.findAll());
+    public ResponseEntity<List<PessoaHorasGastasDTO>> listarPessoas() {
+        return ResponseEntity.ok().body(pessoaService.listarPessoas());
     }
 }
