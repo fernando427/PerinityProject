@@ -17,10 +17,7 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "departamento_id")
-    private Departamento departamento;
+    private String departamento;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<Tarefa> tarefas;

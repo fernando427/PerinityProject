@@ -21,10 +21,7 @@ public class Tarefa {
     private LocalDate prazo;
     private Integer duracaoH;
     private String status;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "departamento_id")
-    private Departamento departamento;
+    private String departamento;
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
