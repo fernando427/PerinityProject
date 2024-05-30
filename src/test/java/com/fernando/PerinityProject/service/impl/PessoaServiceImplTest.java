@@ -54,9 +54,9 @@ class PessoaServiceImplTest {
     void whenAdicionarPessoaThenReturnAnPessoa() {
         when(pessoaRepository.save(any(Pessoa.class))).thenReturn(pessoa);
 
-        Pessoa response = pessoaService.adicionarPessoa(pessoa);
+        Pessoa resultado = pessoaService.adicionarPessoa(pessoa);
 
-        assertNotNull(response);
+        assertNotNull(resultado);
         verify(pessoaRepository).save(pessoa);
     }
 
@@ -65,11 +65,11 @@ class PessoaServiceImplTest {
         when(pessoaRepository.findById(anyLong())).thenReturn(Optional.of(pessoa));
         when(pessoaRepository.save(any(Pessoa.class))).thenReturn(updatePessoa);
 
-        Pessoa response = pessoaService.alterarPessoa(pessoa, 1L);
+        Pessoa resultado = pessoaService.alterarPessoa(pessoa, 1L);
 
-        assertNotNull(response);
-        assertEquals(updatePessoa.getNome(), response.getNome());
-        assertEquals(updatePessoa.getDepartamento(), response.getDepartamento());
+        assertNotNull(resultado);
+        assertEquals(updatePessoa.getNome(), resultado.getNome());
+        assertEquals(updatePessoa.getDepartamento(), resultado.getDepartamento());
         verify(pessoaRepository).save(any(Pessoa.class));
         verify(pessoaRepository).findById(1L);
     }
@@ -141,12 +141,12 @@ class PessoaServiceImplTest {
     void whenFindByIdThenReturnAnPessoaInstance() {
         when(pessoaRepository.findById(anyLong())).thenReturn(Optional.of(pessoa));
 
-        Pessoa response = pessoaService.findById(anyLong());
+        Pessoa resultado = pessoaService.findById(anyLong());
 
-        assertNotNull(response);
-        assertEquals(pessoa, response);
-        assertEquals(Pessoa.class, response.getClass());
-        assertEquals(1L, response.getId());
+        assertNotNull(resultado);
+        assertEquals(pessoa, resultado);
+        assertEquals(Pessoa.class, resultado.getClass());
+        assertEquals(1L, resultado.getId());
     }
 
     @Test
