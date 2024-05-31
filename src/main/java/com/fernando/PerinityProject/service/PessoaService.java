@@ -12,5 +12,6 @@ public interface PessoaService {
     Pessoa alterarPessoa(Pessoa pessoa, Long id);
     List<PessoaHorasGastasDTO> listarPessoas();
     List<PessoaMediaHorasGastasDTO> buscarPessoaNomePeriodo(String nome, LocalDate startDate, LocalDate endDate);
+    List<Pessoa> listarTodasPessoas();
     void deletarPessoa(Long id);
 }

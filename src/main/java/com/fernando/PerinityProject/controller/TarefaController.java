@@ -39,4 +39,9 @@ public class TarefaController {
     public ResponseEntity<List<Tarefa>> listarTarefasPendentes() {
         return ResponseEntity.ok().body(tarefaService.listarTarefasPendentes());
     }
+
+    @GetMapping("/todas")
+    public ResponseEntity<List<Tarefa>> listarTodasTarefas() {
+        return ResponseEntity.ok().body(tarefaService.listarTodasTarefas());
+    }
 }

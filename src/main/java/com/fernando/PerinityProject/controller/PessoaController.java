@@ -52,4 +52,9 @@ public class PessoaController {
         LocalDate end = LocalDate.parse(endDate);
         return ResponseEntity.ok().body(pessoaService.buscarPessoaNomePeriodo(nome, start, end));
     }
+
+    @GetMapping("/todas")
+    public ResponseEntity<List<Pessoa>> listarTodasPessoas() {
+        return ResponseEntity.ok().body(pessoaService.listarTodasPessoas());
+    }
 }

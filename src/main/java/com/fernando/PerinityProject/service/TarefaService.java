@@ -8,5 +8,6 @@ public interface TarefaService {
     Tarefa adicionarTarefa(Tarefa tarefa);
     Tarefa alocarTarefa(Long tarefaId, Long pessoaId);
     Tarefa finalizarTarefa(Long id);
+    List<Tarefa> listarTodasTarefas();
     List<Tarefa> listarTarefasPendentes();
 }

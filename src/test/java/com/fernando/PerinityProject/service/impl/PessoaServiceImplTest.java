@@ -119,6 +119,17 @@ class PessoaServiceImplTest {
     }
 
     @Test
+    void whenListarTodasPessoasThenReturnTodasPessoas() {
+        when(pessoaRepository.findAll()).thenReturn(pessoas);
+
+        List<Pessoa> resultado = pessoaService.listarTodasPessoas();
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
+        verify(pessoaRepository).findAll();
+    }
+
+    @Test
     void whenDeleteAnPersonThenVerifyIfIsDeleted() {
         when(pessoaRepository.findById(anyLong())).thenReturn(Optional.of(pessoa));
 

@@ -92,6 +92,19 @@ class TarefaControllerTest {
         assertEquals(Tarefa.class, resultado.getBody().get(0).getClass());
     }
 
+    @Test
+    void whenListarTodasTarefasThenReturnListOfTodasTarefas() {
+        when(tarefaService.listarTodasTarefas()).thenReturn(tarefas);
+
+        ResponseEntity<List<Tarefa>> resultado = tarefaController.listarTodasTarefas();
+
+        assertNotNull(resultado);
+        assertNotNull(resultado.getBody());
+        assertEquals(HttpStatus.OK, resultado.getStatusCode());
+        assertEquals(ResponseEntity.class, resultado.getClass());
+        assertEquals(Tarefa.class, resultado.getBody().get(0).getClass());
+    }
+
     private void startTarefa() {
         pessoa = new Pessoa(1L, "Tomas", "Departamento Teste", null);
         tarefa = new Tarefa(1L, "Procurar requisitos", "Procurar todos os requisitos", LocalDate.of(2024, 10, 1), 5, "PENDENTE", "Departamento Teste", null);

@@ -31,6 +31,8 @@ class PessoaControllerTest {
     private PessoaService pessoaService;
 
     private Pessoa pessoa;
+    private Pessoa pessoa2;
+    private List<Pessoa> pessoas;
     private PessoaHorasGastasDTO pessoaHGDTO;
     private PessoaHorasGastasDTO pessoaHGDTO2;
     private List<PessoaHorasGastasDTO> pessoasHGDTO;
@@ -110,8 +112,23 @@ class PessoaControllerTest {
         assertEquals(PessoaMediaHorasGastasDTO.class, resultado.getBody().get(0).getClass());
     }
 
+    @Test
+    void whenListarTodasPessoasThenReturnListOfTodasPessoas() {
+        when(pessoaService.listarTodasPessoas()).thenReturn(pessoas);
+
+        ResponseEntity<List<Pessoa>> resultado = pessoaController.listarTodasPessoas();
+
+        assertNotNull(resultado);
+        assertNotNull(resultado.getBody());
+        assertEquals(HttpStatus.OK, resultado.getStatusCode());
+        assertEquals(ResponseEntity.class, resultado.getClass());
+        assertEquals(Pessoa.class, resultado.getBody().get(0).getClass());
+    }
+
     private void startPessoa() {
         pessoa = new Pessoa(1L, "Tomas", "Departamento Teste", null);
+        pessoa2 = new Pessoa(2L, "Agostinho", "Departamento Teste 2", null);
+        pessoas = List.of(pessoa, pessoa2);
 
         pessoaHGDTO = new PessoaHorasGastasDTO("Teste 1", "TI", 5);
         pessoaHGDTO2 = new PessoaHorasGastasDTO("Teste 2", "Segurança",7);

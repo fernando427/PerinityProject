@@ -127,6 +127,17 @@ class TarefaServiceImplTest {
         verify(tarefaRepository).findTarefasPendentes(pageable);
     }
 
+    @Test
+    void whenListarTodasTarefasThenReturnTodasTarefas() {
+        when(tarefaRepository.findAll()).thenReturn(tarefas);
+
+        List<Tarefa> resultado = tarefaService.listarTodasTarefas();
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
+        verify(tarefaRepository).findAll();
+    }
+
     private void startTarefa() {
         tarefa = new Tarefa(1L, "Procurar requisitos", "Procurar todos os requisitos", LocalDate.of(2024, 10, 1), 5, "PENDENTE", "Departamento Teste", null);
         tarefa2 = new Tarefa(2L, "Procurar requisitos", "Procurar todos os requisitos", LocalDate.of(2024, 10, 1), 5, "PENDENTE", "Departamento Teste", null);

@@ -74,6 +74,11 @@ public class PessoaServiceImpl implements PessoaService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Pessoa> listarTodasPessoas() {
+        return pessoaRepository.findAll();
+    }
+
 
     @Override
     public void deletarPessoa(Long id) {

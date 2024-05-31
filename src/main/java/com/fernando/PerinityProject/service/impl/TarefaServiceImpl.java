@@ -63,9 +63,15 @@ public class TarefaServiceImpl implements TarefaService {
     }
 
     @Override
+    public List<Tarefa> listarTodasTarefas() {
+        return tarefaRepository.findAll();
+    }
+
+    @Override
     public List<Tarefa> listarTarefasPendentes() {
         Pageable pageable = PageRequest.of(0, 3);
         return tarefaRepository.findTarefasPendentes(pageable);
     }
+
 
 }
