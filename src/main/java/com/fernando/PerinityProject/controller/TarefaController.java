@@ -26,12 +26,12 @@ public class TarefaController {
     }
 
     @PutMapping("/{tarefaId}/alocar/{pessoaId}")
-    public ResponseEntity<Tarefa> alterarPessoa(@PathVariable Long tarefaId, @PathVariable Long pessoaId) {
+    public ResponseEntity<Tarefa> alocarTarefa(@PathVariable Long tarefaId, @PathVariable Long pessoaId) {
         return ResponseEntity.ok().body(tarefaService.alocarTarefa(tarefaId, pessoaId));
     }
 
     @PutMapping("/finalizar/{id}")
-    public ResponseEntity<Tarefa> alterarPessoa(@PathVariable Long id) {
+    public ResponseEntity<Tarefa> finalizarTarefa(@PathVariable Long id) {
         return ResponseEntity.ok().body(tarefaService.finalizarTarefa(id));
     }
 

@@ -43,7 +43,7 @@ class TarefaServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        startPessoa();
+        startTarefa();
     }
 
     @Test
@@ -127,7 +127,7 @@ class TarefaServiceImplTest {
         verify(tarefaRepository).findTarefasPendentes(pageable);
     }
 
-    private void startPessoa() {
+    private void startTarefa() {
         tarefa = new Tarefa(1L, "Procurar requisitos", "Procurar todos os requisitos", LocalDate.of(2024, 10, 1), 5, "PENDENTE", "Departamento Teste", null);
         tarefa2 = new Tarefa(2L, "Procurar requisitos", "Procurar todos os requisitos", LocalDate.of(2024, 10, 1), 5, "PENDENTE", "Departamento Teste", null);
         tarefas = List.of(tarefa, tarefa2);
