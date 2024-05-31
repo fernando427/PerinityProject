@@ -84,14 +84,36 @@ class TarefaServiceImplTest {
     }
 
     @Test
-    void whenAlocarTarefaAndDifferentDepartmentsThenThrowException() {
+    void whenAlocarTarefaAndDifferentDepartmentsThenResourceThrowException() {
         when(tarefaRepository.findById(anyLong())).thenReturn(Optional.of(tarefa));
         when(pessoaRepository.findById(anyLong())).thenReturn(Optional.of(pessoaDifDep));
         assertThrows(ResourceNotEqualException.class, () -> tarefaService.alocarTarefa(1L, 2L));
     }
 
     @Test
-    void finalizarTarefa() {
+    void whenFinalizarTarefaThenReturnTarefaFinalizada() {
+        when(tarefaRepository.findById(anyLong())).thenReturn(Optional.of(tarefa));
+        when(tarefaRepository.save(any(Tarefa.class))).thenReturn(tarefa);
+
+        Tarefa resultado = tarefaService.finalizarTarefa(1L);
+
+        assertNotNull(resultado);
+        assertEquals("FINALIZADA", resultado.getStatus());
+        verify(tarefaRepository).findById(1L);
+        verify(tarefaRepository).save(tarefa);
+    }
+
+    @Test
+    void whenFinalizarTarefaAndTarefaNotFoundThenThrowResourceNotFoundException() {
+        when(tarefaRepository.findById(anyLong())).thenReturn(Optional.empty());
+        assertThrows(ResourceNotFoundException.class, () -> tarefaService.finalizarTarefa(1L));
+    }
+
+    @Test
+    void whenFinalizarTarefaIsFinalizadaThenThrowResourceNotEqualException() {
+        tarefa.setStatus("FINALIZADA");
+        when(tarefaRepository.findById(anyLong())).thenReturn(Optional.of(tarefa));
+        assertThrows(ResourceNotEqualException.class, () -> tarefaService.finalizarTarefa(1L));
     }
 
     @Test
