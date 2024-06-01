@@ -284,7 +284,7 @@ OBS: Para facilitar ao usuário, já há alguns dados sendo incrementados automa
 
 ### Buscar Todas as Pessoas
 
-- **URL:** `/tarefas/todas`
+- **URL:** `/pessoas/todas`
 - **Método:** `GET`
 - **Descrição:** Listar todas as pessoas.
 - **Resposta de Sucesso**
